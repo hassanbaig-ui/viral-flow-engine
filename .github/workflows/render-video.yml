@@ -1,36 +1,66 @@
 name: Render Video
+
 on:
   workflow_dispatch:
-    inputs:
-      clip_url:
-        description: 'URL of the clip to process'
-        required: true
-      title:
-        description: 'Video Title'
-        required: true
+
+permissions:
+  contents: write
 
 jobs:
   render:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Install Application Dependencies
+        run: npm install
+        working-directory: remotion
+
+      - name: Run Shout & Clip (Fetch Assets)
+        # We need to install python deps. 
+        # Alternatively, we could commit the assets, but the user said "Zero-CPU Rule: Ensure all heavy rendering happens on the GitHub runner."
+        # And "Fetch 3 segments...".
+        # If I can't fetch locally, I fetch here.
+        # But if I fetch here, I need python.
+        run: |
+          pip install yt-dlp
+          python modules/scout_clips.py
+        working-directory: .
+
+      - name: Move Assets to Public
+        # Remotion usually looks relative to the project or in public.
+        # Our script puts them in 'assets'.
+        # We need to make sure Remotion can see them.
+        # Ideally move them to remotion/public/assets if possible, or just reference them correctly.
+        # My composition uses "assets/clip1.mp4".
+        # If I run render from 'remotion' dir, "assets/clip1.mp4" refers to 'remotion/assets/clip1.mp4'?
+        # Or relative to where command is run?
+        # safests is to move simple assets to inside remotion folder.
+        run: |
+          mkdir -p remotion/public/assets
+          # Copy from root assets to remotion/public/assets
+          # But the scout_clips.py creates 'assets' in CWD.
+          # If we run it in root, it creates 'assets' in root.
+          cp -r assets/* remotion/public/assets/ || true
+          # Also ensure stock.mp4 is caught.
       
-      - name: Install FFmpeg
-        run: sudo apt-get update && sudo apt-get install -y ffmpeg
-
-      - name: Install Dependencies
-        working-directory: ./remotion
-        run: npm ci
-
       - name: Render Video
-        working-directory: ./remotion
-        run: npx remotion render Root out/video.mp4 --props='{"clipUrl": "${{ github.event.inputs.clip_url }}", "title": "${{ github.event.inputs.title }}"}'
+        run: npx remotion render ViralVideo out/video.mp4 --props="{}" --gl=angle
+        working-directory: remotion
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: final-video
+          name: viral-video
           path: remotion/out/video.mp4
