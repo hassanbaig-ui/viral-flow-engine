@@ -1,91 +1,106 @@
 import { AbsoluteFill, Video, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
 import React from "react";
+import { z } from "zod";
 
-// Mock captions data (in a real app, this would come from a transcription service)
-const CAPTIONS = [
-    { start: 0, end: 30, text: "This" },
-    { start: 30, end: 60, text: "is" },
-    { start: 60, end: 90, text: "the" },
-    { start: 90, end: 120, text: "secret" },
-    { start: 120, end: 150, text: "to" },
-    { start: 150, end: 180, text: "success." },
-];
+// Define props validation
+export const myCompSchema = z.object({
+    clipIndex: z.number(),
+    videoUrl: z.string(),
+    startTime: z.number(),
+    endTime: z.number(),
+    title: z.string(),
+    transcript: z.string(),
+});
 
-export const ViralComposition: React.FC = () => {
+export const ViralComposition: React.FC<z.infer<typeof myCompSchema>> = ({
+    clipIndex,
+    videoUrl,
+    startTime,
+    endTime,
+    title,
+    transcript
+}) => {
     const frame = useCurrentFrame();
     const { width, height, fps } = useVideoConfig();
 
-    // Assets (assuming they are in public/ or imported, but for Remotion 'src' can be a path)
-    // We will use the assets downloaded to 'assets/' folder.
-    // In Remotion, using local files outside 'public' or 'src' can be tricky with Webpack.
-    // Usually we import them or put them in public.
-    // For this implementation, we will assume they are served or we use absolute paths if running locally,
-    // but for GitHub Actions, we should put them in 'public/assets' or similar.
-    // The scout_clips.py puts them in 'assets/'. We should ensure the build process sees them.
-    // For now, I'll link to files assuming they are available.
+    // Determine assets based on index or just use the passed URL?
+    // We need to have the file locally for 'Video' component usually, OR use a remote URL.
+    // videoUrl is remote (YouTube). Remotion <Video> supports remote URLs.
+    // However, we want to clip it.
+    // We can use 'startFrom' and 'endAt' props in Video if supported, or just offset startFrom.
+    // <Video startFrom={startTime * fps} ... />
 
-    // Note: In a real Remotion project, you'd use 'staticFile()' from @remotion/paths or imports.
-    // I'll assume they are available at runtime.
-    const mainClipSrc = "assets/clip1.mp4"; // Taking the first one for the comp
-    const stockClipSrc = "assets/stock.mp4";
+    // B-Roll: Alternate based on index
+    const bRolls = [
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", // Placeholder High-end
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+    ];
+    const bRollSrc = bRolls[clipIndex % bRolls.length];
 
-    // Filters
-    // Pixel-Shift: 105% Scale
+    // Transformation
     const scale = 1.05;
-
-    // Hue-Shift: 1% (approx 3.6 degrees)
-    const hueRotate = "3.6deg";
-
-    // Kinetic Captions
-    const currentCaption = CAPTIONS.find(c => frame >= c.start && frame < c.end);
+    const hueRotate = frame % 360; // 1 degree static or rotating? "1% Hue-Rotate". 
+    // 1% of 360 is 3.6deg. "1% Hue-Rotate" implies a static small shift to bypass hashing.
+    const staticHue = "3.6deg";
 
     return (
         <AbsoluteFill style={{ backgroundColor: "black" }}>
-            {/* Bottom Layer: Dark Stock Footage */}
-            <AbsoluteFill style={{ zIndex: 0 }}>
+            {/* Bottom Layer: Abstract B-Roll */}
+            <AbsoluteFill style={{ zIndex: 0, height: "50%", top: "50%" }}>
                 <Video
-                    source={stockClipSrc}
+                    source={bRollSrc}
                     style={{
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
-                        filter: "brightness(0.3)", // "High-quality dark stock"
+                        filter: "brightness(0.5)",
                     }}
                     loop
+                    muted
                 />
             </AbsoluteFill>
 
             {/* Top Layer: Main Clip */}
-            <AbsoluteFill style={{ zIndex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <AbsoluteFill style={{ zIndex: 1, height: "50%", top: "0%" }}>
                 <Video
-                    source={mainClipSrc}
+                    source={videoUrl}
+                    startFrom={Math.floor(startTime * fps)}
+                    endAt={Math.floor(endTime * fps)}
                     style={{
-                        // Layout: Center, Fit Width? 
-                        // If it's a podcast (16:9), and we are 9:16, we fit width.
                         width: "100%",
-                        // height: "auto", 
-                        // Pixel Shift & Hue Shift
+                        height: "100%",
+                        objectFit: "cover",
                         transform: `scale(${scale})`,
-                        filter: `hue-rotate(${hueRotate})`,
+                        filter: `hue-rotate(${staticHue})`,
                     }}
                 />
             </AbsoluteFill>
 
-            {/* Captions Layer */}
-            <AbsoluteFill style={{ zIndex: 2, justifyContent: 'flex-end', paddingBottom: 150, alignItems: 'center' }}>
-                {currentCaption && (
-                    <div style={{
-                        fontFamily: "Montserrat",
-                        fontSize: 80,
-                        color: "white",
-                        fontWeight: "bold",
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                        textShadow: "0px 0px 10px rgba(0,0,0,0.8)",
-                    }}>
-                        {currentCaption.text}
-                    </div>
-                )}
+            {/* Overlay / Divider */}
+            <div style={{
+                position: 'absolute',
+                top: '50%',
+                width: '100%',
+                height: '4px',
+                backgroundColor: 'white',
+                zIndex: 2
+            }} />
+
+            {/* Kinetic Captions (Mocked for now as we don't have accurate word-timestamps in config yet) */}
+            <AbsoluteFill style={{ zIndex: 3, justifyContent: 'center', alignItems: 'center', top: '25%' }}>
+                <div style={{
+                    fontFamily: "Montserrat",
+                    fontSize: 60,
+                    color: "white",
+                    fontWeight: "bold",
+                    textTransform: "uppercase",
+                    textAlign: "center",
+                    textShadow: "0px 0px 10px rgba(0,0,0,0.8)",
+                    padding: 20
+                }}>
+                    {title}
+                </div>
             </AbsoluteFill>
         </AbsoluteFill>
     );

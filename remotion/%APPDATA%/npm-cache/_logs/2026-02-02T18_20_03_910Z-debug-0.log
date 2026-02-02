@@ -1,0 +1,52 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.6.2
+2 info using node@v24.13.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\QC\Downloads\ViralFlow_v2\remotion\.npmrc
+5 silly config load:file:C:\Users\QC\.npmrc
+6 silly config load:file:C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm\etc\npmrc
+7 verbose title npm install remotion@latest
+8 verbose argv "install" "remotion@latest"
+9 verbose logfile logs-max:10 dir:C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm-cache\_logs\2026-02-02T18_20_03_910Z-
+10 verbose logfile C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm-cache\_logs\2026-02-02T18_20_03_910Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly packumentCache corgi:https://registry.npmjs.org/remotion cache-miss
+14 http cache https://registry.npmjs.org/remotion 43ms (cache hit)
+15 silly packumentCache corgi:https://registry.npmjs.org/remotion set size:1783813 disposed:false
+16 silly idealTree buildDeps
+17 silly fetch manifest remotion@4.0.417
+18 silly packumentCache full:https://registry.npmjs.org/remotion cache-miss
+19 http cache https://registry.npmjs.org/remotion 46ms (cache hit)
+20 silly packumentCache full:https://registry.npmjs.org/remotion set size:3438064 disposed:false
+21 silly fetch manifest react@^18.0.0
+22 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+23 http cache https://registry.npmjs.org/react 36ms (cache hit)
+24 silly packumentCache full:https://registry.npmjs.org/react set size:6442854 disposed:false
+25 silly fetch manifest react-dom@^18.0.0
+26 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
+27 http cache https://registry.npmjs.org/react-dom 52ms (cache hit)
+28 silly packumentCache full:https://registry.npmjs.org/react-dom set size:8512812 disposed:false
+29 silly placeDep ROOT remotion@4.0.417 REPLACE for: viral-video-engine@1.0.0 want: 4.0.417
+30 silly reify moves {}
+31 silly audit bulk request {
+31 silly audit   '@types/prop-types': [ '15.7.15' ],
+31 silly audit   '@types/react': [ '18.3.27' ],
+31 silly audit   '@types/web': [ '0.0.61' ],
+31 silly audit   csstype: [ '3.2.3' ],
+31 silly audit   'js-tokens': [ '4.0.0' ],
+31 silly audit   'loose-envify': [ '1.4.0' ],
+31 silly audit   react: [ '18.3.1' ],
+31 silly audit   'react-dom': [ '18.3.1' ],
+31 silly audit   scheduler: [ '0.23.2' ],
+31 silly audit   zod: [ '3.25.76' ],
+31 silly audit   remotion: [ '4.0.417' ]
+31 silly audit }
+32 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 539ms
+33 silly audit report {}
+34 verbose cwd C:\Users\QC\Downloads\ViralFlow_v2\remotion
+35 verbose os Windows_NT 10.0.19045
+36 verbose node v24.13.0
+37 verbose npm  v11.6.2
+38 verbose exit 0
+39 info ok

@@ -1,0 +1,120 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.6.2
+2 info using node@v24.13.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\QC\Downloads\ViralFlow_v2\remotion\.npmrc
+5 silly config load:file:C:\Users\QC\.npmrc
+6 silly config load:file:C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install"
+9 verbose logfile logs-max:10 dir:C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm-cache\_logs\2026-02-02T18_18_52_127Z-
+10 verbose logfile C:\Users\QC\Downloads\ViralFlow_v2\remotion\%APPDATA%\npm-cache\_logs\2026-02-02T18_18_52_127Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 silly idealTree buildDeps
+14 silly fetch manifest remotion@latest
+15 silly packumentCache full:https://registry.npmjs.org/remotion cache-miss
+16 http cache https://registry.npmjs.org/remotion 68ms (cache hit)
+17 silly packumentCache full:https://registry.npmjs.org/remotion set size:3438064 disposed:false
+18 silly fetch manifest react@^18.0.0
+19 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+20 http cache https://registry.npmjs.org/react 191ms (cache hit)
+21 silly packumentCache full:https://registry.npmjs.org/react set size:6442854 disposed:false
+22 silly fetch manifest react-dom@^18.0.0
+23 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
+24 http cache https://registry.npmjs.org/react-dom 67ms (cache hit)
+25 silly packumentCache full:https://registry.npmjs.org/react-dom set size:8512812 disposed:false
+26 silly fetch manifest zod@^3.22.4
+27 silly packumentCache full:https://registry.npmjs.org/zod cache-miss
+28 http cache https://registry.npmjs.org/zod 37ms (cache hit)
+29 silly packumentCache full:https://registry.npmjs.org/zod set size:3489329 disposed:false
+30 silly fetch manifest @types/react@^18.0.0
+31 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+32 http cache https://registry.npmjs.org/@types%2freact 26ms (cache hit)
+33 silly packumentCache full:https://registry.npmjs.org/@types%2freact set size:2555610 disposed:false
+34 silly fetch manifest @types/web@^0.0.61
+35 silly packumentCache full:https://registry.npmjs.org/@types%2fweb cache-miss
+36 http cache https://registry.npmjs.org/@types%2fweb 21ms (cache hit)
+37 silly packumentCache full:https://registry.npmjs.org/@types%2fweb set size:553538 disposed:false
+38 silly placeDep ROOT @types/react@18.3.27 OK for: viral-video-engine@1.0.0 want: ^18.0.0
+39 silly placeDep ROOT @types/web@0.0.61 OK for: viral-video-engine@1.0.0 want: ^0.0.61
+40 silly placeDep ROOT react@18.3.1 OK for: viral-video-engine@1.0.0 want: ^18.0.0
+41 silly placeDep ROOT react-dom@18.3.1 OK for: viral-video-engine@1.0.0 want: ^18.0.0
+42 silly placeDep ROOT remotion@4.0.417 OK for: viral-video-engine@1.0.0 want: latest
+43 silly placeDep ROOT zod@3.25.76 OK for: viral-video-engine@1.0.0 want: ^3.22.4
+44 silly fetch manifest csstype@^3.2.2
+45 silly packumentCache full:https://registry.npmjs.org/csstype cache-miss
+46 silly fetch manifest @types/prop-types@*
+47 silly packumentCache full:https://registry.npmjs.org/@types%2fprop-types cache-miss
+48 silly fetch manifest loose-envify@^1.1.0
+49 silly packumentCache full:https://registry.npmjs.org/loose-envify cache-miss
+50 http cache https://registry.npmjs.org/@types%2fprop-types 27ms (cache hit)
+51 silly packumentCache full:https://registry.npmjs.org/@types%2fprop-types set size:53942 disposed:false
+52 silly fetch manifest scheduler@^0.23.2
+53 silly packumentCache full:https://registry.npmjs.org/scheduler cache-miss
+54 http cache https://registry.npmjs.org/csstype 33ms (cache hit)
+55 silly packumentCache full:https://registry.npmjs.org/csstype set size:274189 disposed:false
+56 silly fetch manifest loose-envify@^1.1.0
+57 silly packumentCache full:https://registry.npmjs.org/loose-envify cache-miss
+58 http cache https://registry.npmjs.org/loose-envify 39ms (cache hit)
+59 silly packumentCache full:https://registry.npmjs.org/loose-envify set size:12559 disposed:false
+60 http cache https://registry.npmjs.org/loose-envify 22ms (cache hit)
+61 silly packumentCache full:https://registry.npmjs.org/loose-envify set size:12559 disposed:false
+62 silly packumentCache full:https://registry.npmjs.org/loose-envify dispose
+63 http cache https://registry.npmjs.org/scheduler 50ms (cache hit)
+64 silly packumentCache full:https://registry.npmjs.org/scheduler set size:5352657 disposed:false
+65 silly placeDep ROOT @types/prop-types@15.7.15 OK for: @types/react@18.3.27 want: *
+66 silly placeDep ROOT csstype@3.2.3 OK for: @types/react@18.3.27 want: ^3.2.2
+67 silly placeDep ROOT loose-envify@1.4.0 OK for: react@18.3.1 want: ^1.1.0
+68 silly fetch manifest js-tokens@^3.0.0 || ^4.0.0
+69 silly packumentCache full:https://registry.npmjs.org/js-tokens cache-miss
+70 http cache https://registry.npmjs.org/js-tokens 11ms (cache hit)
+71 silly packumentCache full:https://registry.npmjs.org/js-tokens set size:41947 disposed:false
+72 silly placeDep ROOT js-tokens@4.0.0 OK for: loose-envify@1.4.0 want: ^3.0.0 || ^4.0.0
+73 silly placeDep ROOT scheduler@0.23.2 OK for: react-dom@18.3.1 want: ^0.23.2
+74 silly reify moves {}
+75 silly audit bulk request {
+75 silly audit   '@types/react': [ '18.3.27' ],
+75 silly audit   '@types/web': [ '0.0.61' ],
+75 silly audit   react: [ '18.3.1' ],
+75 silly audit   'react-dom': [ '18.3.1' ],
+75 silly audit   remotion: [ '4.0.417' ],
+75 silly audit   zod: [ '3.25.76' ],
+75 silly audit   '@types/prop-types': [ '15.7.15' ],
+75 silly audit   csstype: [ '3.2.3' ],
+75 silly audit   'loose-envify': [ '1.4.0' ],
+75 silly audit   'js-tokens': [ '4.0.0' ],
+75 silly audit   scheduler: [ '0.23.2' ]
+75 silly audit }
+76 http cache scheduler@https://registry.npmjs.org/scheduler/-/scheduler-0.23.2.tgz 0ms (cache hit)
+77 http cache js-tokens@https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz 0ms (cache hit)
+78 http cache loose-envify@https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz 0ms (cache hit)
+79 http cache csstype@https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz 0ms (cache hit)
+80 http cache @types/prop-types@https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.15.tgz 0ms (cache hit)
+81 http cache zod@https://registry.npmjs.org/zod/-/zod-3.25.76.tgz 0ms (cache hit)
+82 http cache remotion@https://registry.npmjs.org/remotion/-/remotion-4.0.417.tgz 2ms (cache hit)
+83 http cache react-dom@https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz 0ms (cache hit)
+84 http cache react@https://registry.npmjs.org/react/-/react-18.3.1.tgz 0ms (cache hit)
+85 http cache @types/web@https://registry.npmjs.org/@types/web/-/web-0.0.61.tgz 0ms (cache hit)
+86 http cache @types/react@https://registry.npmjs.org/@types/react/-/react-18.3.27.tgz 0ms (cache hit)
+87 silly tarball no local data for react@https://registry.npmjs.org/react/-/react-18.3.1.tgz. Extracting by manifest.
+88 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 966ms
+89 silly audit report {}
+90 http fetch GET 200 https://registry.npmjs.org/react/-/react-18.3.1.tgz 803ms (cache miss)
+91 silly ADD node_modules/scheduler
+92 silly ADD node_modules/js-tokens
+93 silly ADD node_modules/loose-envify
+94 silly ADD node_modules/csstype
+95 silly ADD node_modules/@types/prop-types
+96 silly ADD node_modules/zod
+97 silly ADD node_modules/remotion
+98 silly ADD node_modules/react-dom
+99 silly ADD node_modules/react
+100 silly ADD node_modules/@types/web
+101 silly ADD node_modules/@types/react
+102 verbose cwd C:\Users\QC\Downloads\ViralFlow_v2\remotion
+103 verbose os Windows_NT 10.0.19045
+104 verbose node v24.13.0
+105 verbose npm  v11.6.2
+106 verbose exit 0
+107 info ok
