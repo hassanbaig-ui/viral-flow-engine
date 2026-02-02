@@ -1,0 +1,18 @@
+{
+    "name": "viral-video-engine",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "remotion preview",
+        "render": "remotion render"
+    },
+    "dependencies": {
+        "remotion": "latest",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "@types/react": "^18.0.0",
+        "@types/web": "^0.0.61"
+    }
+}

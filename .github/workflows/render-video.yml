@@ -1,0 +1,36 @@
+name: Render Video
+on:
+  workflow_dispatch:
+    inputs:
+      clip_url:
+        description: 'URL of the clip to process'
+        required: true
+      title:
+        description: 'Video Title'
+        required: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Install Dependencies
+        working-directory: ./remotion
+        run: npm ci
+
+      - name: Render Video
+        working-directory: ./remotion
+        run: npx remotion render Root out/video.mp4 --props='{"clipUrl": "${{ github.event.inputs.clip_url }}", "title": "${{ github.event.inputs.title }}"}'
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: final-video
+          path: remotion/out/video.mp4
